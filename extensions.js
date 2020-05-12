@@ -59,15 +59,17 @@ function compareChar(objA, objB, keyStr, callback) {
     return flag
 }
 
-module.exports = {
-    sortExtensionsName,
-}
-
 
 /**
  Question 2: sort extensions by extType follow these orders ASC
  DigitalUser < VirtualUser < FaxUser < AO < Dept.
  **/
+
+/**
+ * sort by extType
+ * @param extensions
+ * @returns {Array<TestRunner.Test> | void | this | this | this | this | this | this | this | this | this | this | this | this}
+ */
 function sortExtensionsByExtType(extensions) {
     let sortExtType = ["DigitalUser", "VirtualUser", "FaxUser", "AO", "Dept",]
 
@@ -94,7 +96,7 @@ function sortExtensionsByExtType(extensions) {
  ]
  **/
 /**
- * sumByQuarter
+ * sum by quarter
  * @param saleItems
  * @returns {[]}
  */
@@ -120,7 +122,11 @@ function sumByQuarter(saleItems) {
  {....}
  ]
  **/
-
+/**
+ * average salePrice by quarter
+ * @param saleItems
+ * @returns {*[]}
+ */
 function averageByQuarter(saleItems) {
     let quarterSumArray = sumByQuarter(saleItems)
 
@@ -144,7 +150,10 @@ function averageByQuarter(saleItems) {
  sequence2.next() --> 3;
  sequence2.next() --> 4;
  **/
-
+/**
+ * generate sequence
+ * @type {Sequence}
+ */
 const Sequence = (() => {
     let _num = 0;
 
@@ -165,7 +174,12 @@ const Sequence = (() => {
  usedKeys: an array to store all used keys like [2,3,4];
  We want to get an array which contains all the unused keys,in this example it would be: [0,1,5,6,7,8,9]
  **/
-
+/**
+ * get unused keys
+ * @param allKeys
+ * @param usedKeys
+ * @returns {*}
+ */
 function getUnUsedKeys(allKeys, usedKeys) {
     return allKeys.filter(item => {
         return usedKeys.indexOf(item) === -1
