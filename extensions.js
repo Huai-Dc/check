@@ -26,10 +26,10 @@ function sortExtensionsNameASC(a, b) {
         else compareChar(a, b, "lastName", (flagLast) => {
             if (flagLast !== 0) code = flagLast
             else compareChar(a, b, "ext", (flagExt) => {
-                code = flagExt
+                code = flagExt;
             })
         })
-    })
+    });
 
     return code
 }
@@ -45,15 +45,15 @@ function sortExtensionsNameASC(a, b) {
 function compareChar(objA, objB, keyStr, callback) {
     let aChar = objA[keyStr].charAt(0),
         bChar = objB[keyStr].charAt(0);
-    let flag = 0
-    if (aChar > bChar) {
-        flag = 1
-    } else if (aChar < bChar) {
-        flag = -1
+    let flag = 0;
+    if (aChar > bChar || aChar.length === 0) {
+        flag = 1;
+    } else if (aChar < bChar || bChar.length === 0) {
+        flag = -1;
     }
 
     if (typeof callback == "function") {
-        callback(flag)
+        callback(flag);
     }
 
     return flag
@@ -68,10 +68,10 @@ function compareChar(objA, objB, keyStr, callback) {
 /**
  * sort by extType
  * @param extensions
- * @returns {Array<TestRunner.Test> | void | this | this | this | this | this | this | this | this | this | this | this | this}
+ * @returns {Array<TestRunner.Test>}
  */
 function sortExtensionsByExtType(extensions) {
-    let sortExtType = ["DigitalUser", "VirtualUser", "FaxUser", "AO", "Dept",]
+    let sortExtType = ["DigitalUser", "VirtualUser", "FaxUser", "AO", "Dept"];
 
     return extensions.sort((a, b) => {
         return sortExtType.indexOf(a.extType) - sortExtType.indexOf(b.extType);
@@ -101,16 +101,16 @@ function sortExtensionsByExtType(extensions) {
  * @returns {[]}
  */
 function sumByQuarter(saleItems) {
-    let result = []
+    let result = [];
     saleItems.forEach(((item) => {
         let currentQuarter = Math.floor((+item.month + 2) / 3);
-        let rsIndex = currentQuarter - 1
+        let rsIndex = currentQuarter - 1;
         if (!result[rsIndex]) {
             result[rsIndex] = {quarter: currentQuarter, totalPrices: 0, transactionNums: 0};
         }
-        result[rsIndex]["totalPrices"] += parseFloat(item.salePrice);
+        result[rsIndex]["totalPrices"] += parseFloat(item.salePrice) || 0;
         result[rsIndex]["transactionNums"] += 1;
-    }))
+    }));
 
     return result
 }
@@ -128,12 +128,12 @@ function sumByQuarter(saleItems) {
  * @returns {*[]}
  */
 function averageByQuarter(saleItems) {
-    let quarterSumArray = sumByQuarter(saleItems)
+    let quarterSumArray = sumByQuarter(saleItems);
 
     quarterSumArray.forEach((quarter) => {
         quarter["averagePrices"] = quarter.totalPrices / 3;
         delete quarter.totalPrices;
-    })
+    });
 
     return quarterSumArray
 }
@@ -157,15 +157,14 @@ function averageByQuarter(saleItems) {
 const Sequence = (() => {
     let _num = 0;
 
-    function Sequence() {
-    }
+    function Sequence() {}
 
     Sequence.prototype.next = () => {
         return ++_num
-    }
+    };
 
-    return Sequence
-})()
+    return Sequence;
+})();
 
 
 /**
@@ -181,6 +180,7 @@ const Sequence = (() => {
  * @returns {*}
  */
 function getUnUsedKeys(allKeys, usedKeys) {
+    if(usedKeys.length === 0) return allKeys;
     return allKeys.filter(item => {
         return usedKeys.indexOf(item) === -1
     })

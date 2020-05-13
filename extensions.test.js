@@ -7,9 +7,9 @@ const {sortExtensionsName, sortExtensionsByExtType, sumByQuarter, averageByQuart
 let extensionArray = [
     {firstName: 'san', lastName: 'Zhang', ext: 'txt', extType: 'DigitalUser'},
     {firstName: 'wu', lastName: 'Wang', ext: 'ppt', extType: 'Dept'},
-    {firstName: 'si', lastName: 'Li', ext: 'doc', extType: 'VirtualUser'},
+    {firstName: 'si', lastName: 'Li', ext: '', extType: 'VirtualUser'},
     {firstName: 'yun', lastName: 'ma', ext: 'ppt', extType: 'AO'},
-    {firstName: 'shen', lastName: 'Li', ext: 'xml', extType: 'FaxUser'},
+    {firstName: 'shen', lastName: '', ext: 'xml', extType: 'FaxUser'},
     {firstName: 'Jack', lastName: 'Jones', ext: 'xml', extType: 'FaxUser'},
 ]
 
@@ -17,9 +17,9 @@ let extensionArray = [
 test("sortExtensionsName by firstName + lastName + ext ASC", () => {
     expect(sortExtensionsName(extensionArray)).toStrictEqual([
         {firstName: 'Jack', lastName: 'Jones', ext: 'xml', extType: 'FaxUser'},
-        {firstName: "si", lastName: "Li", ext: "doc", extType: "VirtualUser"},
-        {firstName: "shen", lastName: "Li", ext: "xml", extType: "FaxUser"},
+        {firstName: "si", lastName: "Li", ext: "", extType: "VirtualUser"},
         {firstName: "san", lastName: "Zhang", ext: "txt", extType: "DigitalUser"},
+        {firstName: "shen", lastName: "", ext: "xml", extType: "FaxUser"},
         {firstName: "wu", lastName: "Wang", ext: "ppt", extType: "Dept"},
         {firstName: "yun", lastName: "ma", ext: "ppt", extType: "AO"}
     ])
@@ -28,10 +28,11 @@ test("sortExtensionsName by firstName + lastName + ext ASC", () => {
 // Q2
 test("sort extensions by given orders ASC", () => {
     expect(sortExtensionsByExtType(extensionArray)).toStrictEqual(
-        [{firstName: "san", lastName: "Zhang", ext: "txt", extType: "DigitalUser"},
-            {firstName: "si", lastName: "Li", ext: "doc", extType: "VirtualUser"},
-            {firstName: "shen", lastName: "Li", ext: "xml", extType: "FaxUser"},
+        [
+            {firstName: "san", lastName: "Zhang", ext: "txt", extType: "DigitalUser"},
+            {firstName: "si", lastName: "Li", ext: "", extType: "VirtualUser"},
             {firstName: 'Jack', lastName: 'Jones', ext: 'xml', extType: 'FaxUser'},
+            {firstName: "shen", lastName: "", ext: "xml", extType: "FaxUser"},
             {firstName: "yun", lastName: "ma", ext: "ppt", extType: "AO"},
             {firstName: "wu", lastName: "Wang", ext: "ppt", extType: "Dept"},
         ]
